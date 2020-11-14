@@ -5,8 +5,8 @@ import java.util.List;
 public interface ProductDao<T> {
 	List<T> getAll();
 
-	T get(String keyword);
-	
+	List<T> getProductByKey(String keyword);
+
 	T get(int id);
 
 	void insert(T t);
@@ -16,6 +16,8 @@ public interface ProductDao<T> {
 	void delete(int id);
 
 	List<T> searchByName(String keyword);
-	
+
 	void updateQuantity(T t);
+
+	List<T> searchByKeyTopic(String keyword, String topic);
 }
