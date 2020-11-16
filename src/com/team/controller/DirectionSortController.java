@@ -1,27 +1,23 @@
 package com.team.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.team.dao.impl.CategoryDaoImpl;
-import com.team.model.Category;
-
 /**
- * Servlet implementation class HomePageController
+ * Servlet implementation class DirectionSortController
  */
 
-public class HomePageController extends HttpServlet {
+public class DirectionSortController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public HomePageController() {
+	public DirectionSortController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,12 +28,15 @@ public class HomePageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String optionSort = request.getParameter("option-sort");
+		if (optionSort.equals("author-sort")) {
+			response.sendRedirect(request.getContextPath() + "/view/user/shop/sort-name");
 
-		List<Category> listCategory = new CategoryDaoImpl().getAll();
-
-		request.setAttribute("listcategory", listCategory);
-		request.getRequestDispatcher("/view/user/template/index.jsp").forward(request, response);
-
+		} else if (optionSort.equals("date-sort")) {
+			request.getRequestDispatcher("/view/user/shop/sort-year").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/view/user/shop").forward(request, response);
+		}
 	}
 
 }

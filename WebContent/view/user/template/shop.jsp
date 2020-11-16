@@ -90,20 +90,28 @@
 						</div>
 					</div>
 					<div class="col-lg-7 col-md-7">
-						<div class="advanced-search">
-							<button type="button" class="category-btn">All
-								Categories</button>
-							<form
-								action="${pageContext.request.contextPath}/view/user/search-key"
-								class="input-group" method="get">
-								<input type="text"
+						<form
+							action="${pageContext.request.contextPath}/view/user/search-key-topic"
+							class="input-group" method="get">
+							<div class="advanced-search">
+
+								<select class="sorting" name="option-topic">
+									<option value="default">All</option>
+									<c:forEach items="${listcategory}" var="cate">
+										<option value="${cate.name}">${cate.name}</option>
+									</c:forEach>
+
+
+
+								</select> <input type="text" size="40"
 									placeholder="What kinds of books do you need?"
 									name="search-key">
 								<button>
 									<i class="ti-search">Search</i>
 								</button>
-							</form>
-						</div>
+
+							</div>
+						</form>
 					</div>
 					<div class="col-lg-3 text-right col-md-3">
 						<ul class="nav-right">
@@ -166,13 +174,12 @@
 					<div class="depart-btn">
 						<i class="ti-menu"></i> <span>All departments</span>
 						<ul class="depart-hover">
-							<li class="active"><a href="#">Textbook </a></li>
-							<li><a href="#">Novel</a></li>
-							<li><a href="#">Comic</a></li>
-							<li><a href="#">Reference Book</a></li>
-							<li><a href="#">Thriller Book</a></li>
-							<li><a href="#">Short Story</a></li>
-							<li><a href="#">Science Fiction Book</a></li>
+							<c:forEach items="${listcategory}" var="cate">
+								<li><a
+									href="${pageContext.request.contextPath}/view/user/shop/view-topic?check-topic=${cate.name}">${cate.name}</a></li>
+							</c:forEach>
+
+
 						</ul>
 					</div>
 				</div>
@@ -182,19 +189,11 @@
 							href="${pageContext.request.contextPath}/view/user/homepage">Home</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/view/user/shop">Shop</a></li>
-						<li><a href="#">Language of Book</a>
-							<ul class="dropdown">
-								<li><a href="#">English</a></li>
-								<li><a href="#">Vietnamese</a></li>
-							</ul></li>
+						<li><a href="#">Best sellers</a></li>
 						<li><a href="${ url}/contact.jsp">Contact</a></li>
-						<li><a href="#">Pages</a>
+						<li><a href="${ url}/blog-details.jsp">	Blog</a></li>
+						<li><a href="#">User</a>
 							<ul class="dropdown">
-								<li><a href="${ url}/blog-details.jsp">Blog Details</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/view/user/shopping-cart">Shopping
-										Cart</a></li>
-								<li><a href="${ url}/check-out.jsp">Checkout</a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/view/user/profile">Profile
 										User</a></li>
@@ -229,28 +228,11 @@
 					class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
 					<div class="filter-widget">
 						<h4 class="fw-title">Author</h4>
-						<div class="fw-brand-check">
-							<div class="bc-item">
-								<label for="bc-calvin"> Nguyen Nhat Anh <input
-									type="checkbox" id="bc-calvin"> <span class="checkmark"></span>
-								</label>
-							</div>
-							<div class="bc-item">
-								<label for="bc-diesel"> J. K. Rowling <input
-									type="checkbox" id="bc-diesel"> <span class="checkmark"></span>
-								</label>
-							</div>
-							<div class="bc-item">
-								<label for="bc-polo"> Fujiko Fujio <input
-									type="checkbox" id="bc-polo"> <span class="checkmark"></span>
-								</label>
-							</div>
-							<div class="bc-item">
-								<label for="bc-tommy"> Others <input type="checkbox"
-									id="bc-tommy"> <span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
+						<form
+							action="${pageContext.request.contextPath}/view/user/search-author">
+							<input type="text" name="check-author" placeholder="Your author?">
+							<button>Search</button>
+						</form>
 					</div>
 
 
@@ -258,7 +240,7 @@
 						action="${pageContext.request.contextPath}/view/user/shop/view-price"
 						method="get">
 						<div class="filter-widget">
-							<h4 class="fw-title">Price</h4>
+							<h4 class="fw-title">Prices</h4>
 							<div class="filter-range-wrap">
 
 								<div class="range-slider">
@@ -277,25 +259,40 @@
 
 
 					<div class="filter-widget">
-						<h4 class="fw-title">Year</h4>
+						<h4 class="fw-title">Publication date</h4>
 						<div class="fw-tags">
-							<a href="#">2020</a> <a href="#">2019</a> <a href="#">2018</a> <a
-								href="#">2017</a> <a href="#">2016</a> <a href="#">2015</a> <a
-								href="#">Older</a>
+							<a
+								href="${pageContext.request.contextPath}/view/user/shop/view-year?viewyear=2020">2020</a>
+							<a
+								href="${pageContext.request.contextPath}/view/user/shop/view-year?viewyear=2019">2019</a>
+							<a
+								href="${pageContext.request.contextPath}/view/user/shop/view-year?viewyear=2018">2018</a>
+							<a href="${pageContext.request.contextPath}/view/user/shop">Older</a>
 						</div>
 					</div>
+
+
+
 				</div>
 				<div class="col-lg-9 order-1 order-lg-2">
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-7 col-md-7">
 								<div class="select-option">
-									<select class="sorting">
-										<option value="">Default Sorting</option>
-									</select> <select class="p-show">
-										<option value="">Show:</option>
-									</select>
+
+									<form
+										action="${pageContext.request.contextPath}/view/user/shop/sort-direction">
+										<select class="sorting" name="option-sort">
+
+											<option value="">Default Sorting</option>
+											<option value="author-sort">Sort By Name</option>
+											<option value="date-sort">Sort By Date</option>
+										</select>
+										<button>Sort</button>
+									</form>
+
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -342,7 +339,20 @@
 
 						</div>
 
+						<!-- <ul class="pagination justify-content-center">
+							<li class="page-item"><a class="page-link" href="#">
+									Previous</a></li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
 
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item disabled"><a class="page-link" href="#">
+									<span aria-hidden="true">»</span>
+							</a></li>
+						</ul> -->
 					</div>
 				</div>
 	</section>

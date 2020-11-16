@@ -159,13 +159,10 @@
 					<div class="depart-btn">
 						<i class="ti-menu"></i> <span>All departments</span>
 						<ul class="depart-hover">
-							<li class="active"><a href="#">Textbook </a></li>
-							<li><a href="#">Novel</a></li>
-							<li><a href="#">Comic</a></li>
-							<li><a href="#">Reference Book</a></li>
-							<li><a href="#">Thriller Book</a></li>
-							<li><a href="#">Short Story</a></li>
-							<li><a href="#">Science Fiction Book</a></li>
+							<c:forEach items="${listcategory}" var="cate">
+								<li><a
+									href="${pageContext.request.contextPath}/view/user/shop/view-topic?check-topic=${cate.name}">${cate.name}</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
@@ -174,18 +171,13 @@
 						<li><a href="${url}/index.jsp">Home</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/view/user/shop">Shop</a></li>
-						<li><a href="#">Language of Book</a>
-							<ul class="dropdown">
-								<li><a href="#">English</a></li>
-								<li><a href="#">Vietnamese</a></li>
-							</ul></li>
+						<li><a href="#">Best sellers</a>
+							</li>
 						<li><a
 							href="${pageContext.request.contextPath}/view/user/contact">Contact</a></li>
-						<li><a href="#">Pages</a>
+						<li><a href="${ url}/blog-details.jsp">	Blog</a></li>
+						<li><a href="#">User</a>
 							<ul class="dropdown">
-								<li><a href="${ url}/blog-details.jsp">Blog Details</a></li>
-								<li><a href="${ url}/shopping-cart.jsp">Shopping Cart</a></li>
-								<li><a href="${ url}/check-out.jsp">Checkout</a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/view/user/profile">Profile
 										User</a></li>
