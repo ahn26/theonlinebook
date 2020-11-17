@@ -325,7 +325,7 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<div class="catagory-name">Short Story</div>
+											<div class="catagory-name">${product.topic}</div>
 											<a
 												href="${pageContext.request.contextPath}/view/user/product-detail?id=${product.product_id}">
 												<h5>${product.name}</h5>
@@ -339,7 +339,7 @@
 
 						</div>
 
-						 <ul class="pagination justify-content-center">
+						 <!-- <ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link" href="#">
 									Previous</a></li>
 							<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -352,7 +352,7 @@
 							<li class="page-item disabled"><a class="page-link" href="#">
 									<span aria-hidden="true">»</span>
 							</a></li>
-						</ul> 
+						</ul>  -->
 					</div>
 				</div>
 	</section>
